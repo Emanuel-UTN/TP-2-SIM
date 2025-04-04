@@ -1,4 +1,4 @@
-import random_generate as rg
+import libreria.random_generate as rg
 
 def uniform_samples(size: int, low: int, high: int) -> list:
     print(f"Generating {size} uniform samples between {low} and {high}.")

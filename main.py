@@ -14,5 +14,8 @@
 from excel_generator import visualizations
 from validador import validar_sample_size 
 sample_size = validar_sample_size()
-distribution_type = input("Enter distribution (uniform, poisson, exponential, normal): ").strip().lower()
+distribution_type = input("Enter distribution (u -> uniform, p -> poisson, e -> exponential, n -> normal): ").strip().lower()
+while distribution_type not in ['u', 'p', 'e', 'n']:
+    print("Invalid input. Please enter 'u', 'p', 'e', or 'n'.")
+    distribution_type = input("Enter distribution (u -> uniform, p -> poisson, e -> exponential, n -> normal): ").strip().lower()
 visualizations(distribution_type, sample_size)

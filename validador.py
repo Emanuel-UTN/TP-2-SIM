@@ -24,7 +24,7 @@ def validar_sample_size():
 def validar_lambda(distribution: str):
     while True:
         try:
-            lam = float(input("Enter the lambda (λ) for {distribution} distribution: "))
+            lam = float(input(f"Enter the lambda (λ) for {distribution} distribution: "))
             if lam > 0:
                 return lam
             else:
