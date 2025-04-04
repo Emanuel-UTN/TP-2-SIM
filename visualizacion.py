@@ -22,7 +22,7 @@ def visualizations(distribution: str, sample_size: int) -> None:
         data = exponential_samples(sample_size, media)
         title = f'Exponential Distribution (λ={media})'
     elif distribution == 'normal':
-        media = valisar_media(distribution)
+        media = validar_media(distribution)
         stdev = validar_stdev()
         data = normal_samples(sample_size, media, stdev)
         title = f'Normal Distribution (μ={media}, σ={stdev})'

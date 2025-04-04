@@ -20,8 +20,7 @@ def generate_random_normal_number(media, stdev):
     u1 = random_open_0_1()
     u2 = random_open_0_1()
     z1 = math.sqrt(-2 * math.log(u1)) * math.cos(2 * math.pi * u2)
-    z2 = math.sqrt(-2 * math.log(u1)) * math.sin(2 * math.pi * u2)
-    return z0 * stdev + media
+    return z1 * stdev + media
 
 def generate_random_poisson_number(lam):
     """Generate a random number from a Poisson distribution using [0, 1) and Knuth's algorithm."""
