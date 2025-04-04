@@ -21,10 +21,10 @@ def validar_sample_size():
         except ValueError:
             print("Please enter a valid integer.")
 
-def validar_lambda():
+def validar_lambda(distribution: str):
     while True:
         try:
-            lam = float(input("Enter the lambda (λ) for Poisson distribution: "))
+            lam = float(input("Enter the lambda (λ) for {distribution} distribution: "))
             if lam > 0:
                 return lam
             else:
@@ -56,3 +56,11 @@ def validar_bins():
                 print("Invalid input. Please enter 10, 15, 20, or 25.")
         except ValueError:
             print("Invalid input. Please enter an integer.")
+
+def validar_media(distribution: str):
+    while True:
+        try:
+            media = float(input(f"Enter the mean (μ) for {distribution} distribution: "))
+            return media
+        except ValueError:
+            print("Please enter a valid number.")
