@@ -1,4 +1,4 @@
-from random_numbers import uniform_samples, poisson_samples, exponential_samples, normal_samples 
+from libreria.random_numbers import uniform_samples, poisson_samples, exponential_samples, normal_samples 
 from validador import validar_ab_uniforme, validar_sample_size, validar_lambda, validar_stdev, validar_bins
 import matplotlib.pyplot as plt
 import pandas as pd
