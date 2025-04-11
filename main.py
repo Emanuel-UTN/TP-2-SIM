@@ -31,5 +31,9 @@ data = visualizations(distribution_type=distribution_type, sample_size=sample_si
 esperado = sample_size / bins
 observado = [0] * bins
 
-for i in range(len(data)):
-    if 
+# Count the occurrences in each bin
+for value in data:
+    bin_index = int(value // (max(data) / bins))
+    if bin_index >= bins:
+        bin_index = bins - 1
+    observado[bin_index] += 1
