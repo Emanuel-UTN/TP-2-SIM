@@ -2,39 +2,42 @@ from scipy.stats import chi2
 
 def prueba_chi_cuadrado(data, sample_size, bins):
     """
-    Perform Chi-squared test on the given data.
+    Realiza la prueba Chi-cuadrado en los datos proporcionados.
 
-    Parameters:
-    data (list): The list of random numbers generated.
-    sample_size (int): The size of the sample.
-    bins (int): The number of bins to use for the histogram.
+    Parámetros:
+    data (list): La lista de números aleatorios generados.
+    sample_size (int): El tamaño de la muestra.
+    intervalos (int): El número de intervalos a utilizar para el histograma.
 
-    Returns:
-    None: Prints the result of the Chi-squared test.
+    Retorna:
+    None: Imprime el resultado de la prueba Chi-cuadrado.
     """
-    # Evaluar numero aleatorios con chi-cuadrado
-    esperado = sample_size / bins
-    observado = [0] * bins
+    # Evaluar números aleatorios con chi-cuadrado
+    intervalos = bins
+    esperado = sample_size / intervalos
+    observado = [0] * intervalos
 
-    # Count the occurrences in each bin
+    # Contar las ocurrencias en cada intervalo
     for value in data:
-        bin_index = int(value // (max(data) / bins))
-        if bin_index >= bins:
-            bin_index = bins - 1
-        observado[bin_index] += 1
+        intervalos_index = int(value // (max(data) / intervalos))
+        if intervalos_index >= intervalos:
+            intervalos_index = intervalos - 1
+        observado[intervalos_index] += 1
 
-    chi_squared = sum((o - esperado) ** 2 / esperado for o in observado)
+    for i in range(intervalos):
+        print(f"Intervalo {i + 1}: Observado = {observado[i]}, Esperado = {esperado}")
+    chi_squared = sum(((o - esperado) ** 2) / esperado for o in observado)
 
-    # Comparar con el vlor de chi-cuadrado de tabla
-    grados_de_libertad = bins - 1
+    # Comparar con el valor de chi-cuadrado de tabla
+    grados_de_libertad = intervalos - 1
     alpha = 0.05 
-    # Chi-squared critical value for 0.05 significance level
+    # Valor crítico Chi-cuadrado para nivel de significancia 0.05
 
     critical_value = chi2.ppf(1 - alpha, grados_de_libertad)
 
     if chi_squared < critical_value:
-        print(f"Chi-squared value: {chi_squared:.2f} =< Critical value: {critical_value:.2f}.")
-        print("The null hypothesis is accepted.")
+        print(f"Valor Chi-cuadrado: {chi_squared:.2f} =< Valor crítico: {critical_value:.2f}.")
+        print("La hipótesis nula es aceptada.")
     else:
-        print(f"Chi-squared value: {chi_squared:.2f} > Critical value: {critical_value:.2f}.")
-        print("The null hypothesis is rejected.")
+        print(f"Valor Chi-cuadrado: {chi_squared:.2f} > Valor crítico: {critical_value:.2f}.")
+        print("La hipótesis nula es rechazada.")

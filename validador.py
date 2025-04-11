@@ -1,66 +1,66 @@
 def validar_ab_uniforme():
     while True:
         try:
-            a = float(input("Enter the lower bound for uniform distribution: "))
-            b = float(input("Enter the upper bound for uniform distribution: "))
+            a = float(input("Ingrese el límite inferior para la distribución uniforme: "))
+            b = float(input("Ingrese el límite superior para la distribución uniforme: "))
             if a < b:
                 return a, b
             else:
-                print("Lower bound must be less than upper bound. Please try again.")
+                print("El límite inferior debe ser menor que el límite superior. Por favor intente de nuevo.")
         except ValueError:
-            print("Please enter valid integers.")
+            print("Por favor ingrese números válidos.")
 
 def validar_sample_size():
     while True:
         try:
-            sample_size = int(input("Enter the sample size: "))
+            sample_size = int(input("Ingrese el tamaño de la muestra: "))
             if 0 < sample_size <= 50000:
-                return sample_size  # Return the validated sample_size
+                return sample_size  # Retorna el tamaño de muestra validado
             else:
-                print("Sample size must be between 1 and 50000. Please try again.")
+                print("El tamaño de la muestra debe estar entre 1 y 50000. Por favor intente de nuevo.")
         except ValueError:
-            print("Please enter a valid integer.")
+            print("Por favor ingrese un número entero válido.")
 
 def validar_lambda(distribution: str):
     while True:
         try:
-            lam = float(input(f"Enter the lambda (λ) for {distribution} distribution: "))
+            lam = float(input(f"Ingrese el lambda (λ) para la distribución {distribution}: "))
             if lam > 0:
                 return lam
             else:
-                print("Lambda must be a positive integer. Please try again.")
+                print("Lambda debe ser un número positivo. Por favor intente de nuevo.")
         except ValueError:
-            print("Please enter a valid integer.")
+            print("Por favor ingrese un número válido.")
 
 def validar_stdev():
     while True:
         try:
-            stdev = float(input("Enter the standard deviation (σ) for Normal distribution: "))
+            stdev = float(input("Ingrese la desviación estándar (σ) para la distribución Normal: "))
             if stdev > 0:
                 return stdev
             else:
-                print("Standard deviation must be a positive integer. Please try again.")
+                print("La desviación estándar debe ser un número positivo. Por favor intente de nuevo.")
         except ValueError:
-            print("Please enter a valid integer.")
+            print("Por favor ingrese un número válido.")
 
 
 def validar_bins():
-    """Validate the number of bins (must be 10, 15, 20, or 25)."""
+    """Valida el número de intervalos (debe ser 10, 15, 20, o 25)."""
     opciones_validas = [10, 15, 20, 25]
     while True:
         try:
-            bins = int(input("Enter the number of intervals (10, 15, 20, 25): "))
+            bins = int(input("Ingrese el número de intervalos (10, 15, 20, 25): "))
             if bins in opciones_validas:
                 return bins
             else:
-                print("Invalid input. Please enter 10, 15, 20, or 25.")
+                print("Entrada inválida. Por favor ingrese 10, 15, 20, o 25.")
         except ValueError:
-            print("Invalid input. Please enter an integer.")
+            print("Entrada inválida. Por favor ingrese un número entero.")
 
 def validar_media(distribution: str):
     while True:
         try:
-            media = float(input(f"Enter the mean (μ) for {distribution} distribution: "))
+            media = float(input(f"Ingrese la media (μ) para la distribución {distribution}: "))
             return media
         except ValueError:
-            print("Please enter a valid number.")
+            print("Por favor ingrese un número válido.")

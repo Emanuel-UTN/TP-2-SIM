@@ -1,29 +1,29 @@
 # from visualizacion import visualizations
 
-# # Global sample size
+# # Tamaño de muestra global
 # sample_size = 1000
-# # Main program loop
+# # Bucle principal del programa
 # while True:
-#     distribution_type = input("Enter the distribution type (uniform, poisson, exponential, normal): ").strip().lower()
-#     if distribution_type in ['uniform', 'poisson', 'exponential', 'normal']:
+#     distribution_type = input("Ingrese el tipo de distribución (uniforme, poisson, exponencial, normal): ").strip().lower()
+#     if distribution_type in ['uniforme', 'poisson', 'exponencial', 'normal']:
 #         visualizations(distribution_type, sample_size)
 #         break
 #     else:
-#         print("Invalid distribution type. Please enter 'uniform', 'poisson', 'exponential', or 'normal'.")
+#         print("Tipo de distribución inválida. Por favor ingrese 'uniforme', 'poisson', 'exponencial', o 'normal'.")
 
 from excel_generator import visualizations
 from validador import validar_sample_size, validar_bins
-from libreria.validacion import prueba_chi_cuadrado
+from libreria.validador_chi import prueba_chi_cuadrado
 
-sample_size = validar_sample_size()
-distribution_type = input("Enter distribution (u -> uniform, p -> poisson, e -> exponential, n -> normal): ").strip().lower()
+tamanio_muestra = validar_sample_size()
+tipo_distribucion = input("Ingrese distribución (u -> uniforme, p -> poisson, e -> exponencial, n -> normal): ").strip().lower()
 
-while distribution_type not in ['u', 'p', 'e', 'n']:
-    print("Invalid input. Please enter 'u', 'p', 'e', or 'n'.")
-    distribution_type = input("Enter distribution (u -> uniform, p -> poisson, e -> exponential, n -> normal): ").strip().lower()
+while tipo_distribucion not in ['u', 'p', 'e', 'n']:
+    print("Entrada inválida. Por favor ingrese 'u', 'p', 'e', o 'n'.")
+    tipo_distribucion = input("Ingrese distribución (u -> uniforme, p -> poisson, e -> exponencial, n -> normal): ").strip().lower()
 
-bins = validar_bins()
+intervalos = validar_bins()
 
-data = visualizations(distribution_type=distribution_type, sample_size=sample_size, bins=bins)
+datos = visualizations(distribution_type=tipo_distribucion, sample_size=tamanio_muestra, bins=intervalos)
 
-prueba_chi_cuadrado(data=data, sample_size=sample_size, bins=bins)
+prueba_chi_cuadrado(data=datos, sample_size=tamanio_muestra, bins=intervalos)
