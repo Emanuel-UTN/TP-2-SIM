@@ -37,3 +37,5 @@ for value in data:
     if bin_index >= bins:
         bin_index = bins - 1
     observado[bin_index] += 1
+
+chi_squared = sum((o - esperado) ** 2 / esperado for o in observado)
