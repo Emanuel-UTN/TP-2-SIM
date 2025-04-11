@@ -47,10 +47,9 @@ def visualizations(distribution: str, sample_size: int) -> None:
     output_dir = 'output'
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-    os.chdir(output_dir)
-
+    
     # Save data to Excel file
-    excel_filename = fr'{output_dir}\{distribution}_output.xlsx'
+    excel_filename = fr'{output_dir}/{distribution}_output.xlsx'
     df = pd.DataFrame({f'{distribution}_values': data})
     with pd.ExcelWriter(excel_filename, engine='openpyxl') as writer:
         df.to_excel(writer, index=False, sheet_name='Data')
@@ -64,8 +63,11 @@ def visualizations(distribution: str, sample_size: int) -> None:
     wb.save(excel_filename)
     
     #Get full absolute path to the Excel file for clickable link
+    # Make sure we're back in the original directory
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    
+    #Get full absolute path to the Excel file for clickable link
     abs_path = os.path.abspath(excel_filename)
-    # Replace backslashes with forward slashes and handle spaces in the path
     formatted_path = abs_path.replace(os.sep, '/')
     url_path = formatted_path.replace(' ', '%20')
-    print(f"Excel file created at: file://{url_path}")
+    print(f"Excel file created at: file:// {url_path}")

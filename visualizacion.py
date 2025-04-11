@@ -4,9 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def visualizations(distribution: str, sample_size: int) -> None:
+def visualizations(distribution: str, sample_size: int, bins:int) -> None:
     plt.figure(figsize=(8, 6))
-    bins = validar_bins()
 
     if distribution == 'uniform':
         a, b = validar_ab_uniforme()
@@ -37,3 +36,5 @@ def visualizations(distribution: str, sample_size: int) -> None:
     plt.tight_layout()
     plt.savefig(f'{distribution}_distribution.png')
     plt.show()
+
+    return data
