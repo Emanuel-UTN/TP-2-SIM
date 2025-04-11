@@ -39,3 +39,17 @@ for value in data:
     observado[bin_index] += 1
 
 chi_squared = sum((o - esperado) ** 2 / esperado for o in observado)
+
+# Comparar con el vlor de chi-cuadrado de tabla
+grados_de_libertad = bins - 1
+alpha = 0.05 
+# Chi-squared critical value for 0.05 significance level
+from scipy.stats import chi2
+critical_value = chi2.ppf(1 - alpha, grados_de_libertad)
+
+if chi_squared < critical_value:
+    print(f"Chi-squared value: {chi_squared:.2f} =< Critical value: {critical_value:.2f}.")
+    print("The null hypothesis is accepted.")
+else:
+    print(f"Chi-squared value: {chi_squared:.2f} > Critical value: {critical_value:.2f}.")
+    print("The null hypothesis is rejected.")
