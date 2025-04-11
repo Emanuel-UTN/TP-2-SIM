@@ -24,6 +24,6 @@ while tipo_distribucion not in ['u', 'p', 'e', 'n']:
 
 intervalos = validar_bins()
 
-datos = visualizations(distribution_type=tipo_distribucion, sample_size=tamanio_muestra, bins=intervalos)
+datos, kwargs = visualizations(distribution_type=tipo_distribucion, sample_size=tamanio_muestra, bins=intervalos)
 
-prueba_chi_cuadrado(data=datos, sample_size=tamanio_muestra, bins=intervalos)
+prueba_chi_cuadrado(data=datos, sample_size=tamanio_muestra, cant_intervalos=intervalos, distribucion_teorica=tipo_distribucion, kwargs=kwargs)
