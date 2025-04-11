@@ -18,12 +18,27 @@ def prueba_chi_cuadrado(data, sample_size, bins):
     observado = [0] * intervalos
 
     # Contar las ocurrencias en cada intervalo
-    for value in data:
-        intervalos_index = int(value // (max(data) / intervalos))
-        if intervalos_index >= intervalos:
-            intervalos_index = intervalos - 1
-        observado[intervalos_index] += 1
 
+    conteos = [0] * bins
+
+    tam_intervalo = 1.0 / bins
+
+    print(f"Intervalo de tamaño: {len(conteos)}")
+    for num in data:
+        indice = int((abs(num) / 100) / tam_intervalo)   # Esto da el índice correcto del intervalo
+        if indice == bins:  # En caso de que num sea exactamente 1.0 (muy raro pero por seguridad)
+            indice -= 1
+        print(indice)
+        conteos[indice] += 1
+    
+    for i in range(bins):
+        li = i * tam_intervalo
+        ls = li + tam_intervalo
+        print(f"Intervalo [{li:.2f}, {ls:.2f}): {conteos[i]} números")
+    
+    # Use conteos instead of the empty observado array
+    observado = conteos
+    
     for i in range(intervalos):
         print(f"Intervalo {i + 1}: Observado = {observado[i]}, Esperado = {esperado}")
     chi_squared = sum(((o - esperado) ** 2) / esperado for o in observado)
