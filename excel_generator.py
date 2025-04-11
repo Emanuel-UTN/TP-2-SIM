@@ -43,8 +43,14 @@ def visualizations(distribution: str, sample_size: int) -> None:
     plt.savefig(image_filename)
     plt.close()
 
-    # Save data to Excel
-    excel_filename = f'{distribution}_output.xlsx'
+    # Crear directorio si no existe
+    output_dir = 'output'
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    os.chdir(output_dir)
+
+    # Save data to Excel file
+    excel_filename = fr'{output_dir}\{distribution}_output.xlsx'
     df = pd.DataFrame({f'{distribution}_values': data})
     with pd.ExcelWriter(excel_filename, engine='openpyxl') as writer:
         df.to_excel(writer, index=False, sheet_name='Data')
